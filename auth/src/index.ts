@@ -3,8 +3,13 @@ import express from "express";
 const app = express();
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.send("Hello World");
+app.use((req, _res, next) => {
+  console.log(req.method, req.path);
+  next();
+});
+
+app.get("/api/users/currentuser", (req, res) => {
+  res.send({ currentUser: null });
 });
 
 app.listen(3000, () => {
