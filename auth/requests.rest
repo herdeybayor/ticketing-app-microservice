@@ -20,3 +20,6 @@ Content-Type: application/json
 {
   "email": "test@test.com"
 }
+
+### Not Found
+GET {{baseUrl}}/api/users/not-found
