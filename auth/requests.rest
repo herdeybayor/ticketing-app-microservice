@@ -1,0 +1,22 @@
+### Variables
+@baseUrl = http://herdeybayor.ticketing.dev
+
+### Current User
+GET {{baseUrl}}/api/users/currentuser
+
+### Signup - Success
+POST {{baseUrl}}/api/users/signup
+Content-Type: application/json
+
+{
+  "email": "test@test.com",
+  "password": "password"
+}
+
+### Signup - Failure
+POST {{baseUrl}}/api/users/signup
+Content-Type: application/json
+
+{
+  "email": "test@test.com"
+}
