@@ -1,5 +1,7 @@
 import express from "express";
 import morgan from "morgan";
+import mongoose from "mongoose";
+
 import { currentUserRouter } from "./routes/current-user.js";
 import { signinRouter } from "./routes/signin.js";
 import { signoutRouter } from "./routes/signout.js";
@@ -28,9 +30,20 @@ app.use(() => {
 // error handling middleware
 app.use(errorHandler);
 
-app.listen(3000, () => {
-  console.log("🚀 Auth service started successfully!");
-  console.log("📡 Server listening on port 3000");
-  console.log("🌐 Environment: development");
-  console.log("✨ Ready to handle authentication requests");
-});
+const start = async () => {
+  try {
+    await mongoose.connect("mongodb://auth-mongo-srv:27017/auth");
+    console.log("🔗 Connected to MongoDB");
+  } catch (err) {
+    console.error(err);
+  }
+
+  app.listen(3000, () => {
+    console.log("🚀 Auth service started successfully!");
+    console.log("📡 Server listening on port 3000");
+    console.log("🌐 Environment: development");
+    console.log("✨ Ready to handle authentication requests");
+  });
+};
+
+start();
